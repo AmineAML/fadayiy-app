@@ -1,9 +1,32 @@
 ---
-// Component Imports
-import Button from '../components/Button.astro';
+  import Navbar from '../components/Navbar.svelte';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
+  import { request, gql } from "graphql-request";
+
+  import FeaturedStations from '../components/FeaturedStations.svelte';
+
+  import { fadayiyGraphqlApi } from '../lib/variables.js';
+
+  const query = gql`
+    {
+      stations {
+        name,
+        status {
+          name
+        },
+        type {
+          name
+        },
+        image_url
+      }
+    }
+  `;
+
+  const stationsRes = await request(fadayiyGraphqlApi, query)
+
+  const { stations } = stationsRes
+
+  const featuredStations = stations.sort(() => .5 - Math.random()).slice(0,3)
 ---
 <html lang="en">
   <head>
@@ -24,51 +47,40 @@ import Button from '../components/Button.astro';
       .layerOne {
         background-image: url('/hero-bg.svg');
       }
+
+      @keyframes float {
+	      0% {
+		      /* box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6); */
+		      transform: translatey(0px);
+	      }
+	      50% {
+		      /* box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2); */
+		      transform: translatey(-20px);
+	      }
+	      100% {
+		      /* box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6); */
+		      transform: translatey(0px);
+	      }
+      }
+      .animateo {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      body {
+        background-image: radial-gradient(circle, #e0e4eb, #e2e5eb, #e5e6eb, #e6e7ea, #e8e8ea);
+      }
     </style>
   </head>
 
-  <body>
-    <!-- <Button>I’m a Tailwind Button!</Button> -->
-
-    <!-- <div class="space layerOne"></div> -->
-
+  <body class="overflow-x-hidden">
     <div class="container">
-      <div class="navbar mb-2 text-neutral-content rounded-box fixed w-full bg-transparent" style="color: #3a415d;">
-  <div class="flex-1 px-2 mx-2">
-    <span class="text-lg font-bold">
-            <img src="/logo.svg" alt="" class="flex w-20 h-20">
-          </span>
-  </div> 
-  <div class="flex-none hidden px-2 mx-2 lg:flex">
-    <div class="flex items-stretch">
-      <a class="btn btn-ghost btn-sm rounded-btn">
-              Stations
-            
-      </a> 
-      <a class="btn btn-ghost btn-sm rounded-btn">
-              Astronauts
-            
-      </a> 
-      <a class="btn btn-ghost btn-sm rounded-btn">
-              Agencies
-            
-      </a> 
-      <a class="btn btn-ghost btn-sm rounded-btn">
-              Launches
-            
-      </a>
-      <a class="btn btn-ghost btn-sm rounded-btn">
-              APOD
-            
-      </a>
-    </div>
-  </div>
-</div>
+
+      <Navbar />
 
       <div class="hero min-h-screen bg-base-200 space layerOne">
         <div class="flex-col hero-content lg:flex-row-reverse gap-40">
         <!-- <img src="https://picsum.photos/id/1005/600/600" class="max-w-sm rounded-lg shadow-2xl"> -->
-          <img src="/gray-planet.png" class="max-w-sm rounded-lg">
+          <img src="/gray-planet.png" class="max-w-sm rounded-lg animateo">
           <div>
             <h1 class="mb-5 text-5xl font-bold" style="color: #3c415e;">Spacey</h1> 
             <p class="mb-5" style="color: #3a415d;">The platform for the space nerds. Learn anything about space!</p> 
@@ -76,6 +88,9 @@ import Button from '../components/Button.astro';
           </div>
         </div>
       </div>
+
     </div>
+
+    <FeaturedStations stations={featuredStations}/>
   </body>
 </html>
