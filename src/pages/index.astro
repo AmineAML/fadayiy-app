@@ -7,7 +7,15 @@
 
   import { fadayiyGraphqlApi } from '../lib/variables.js';
 
-  const query = gql`
+  import FeaturedAstronauts from '../components/FeaturedAstronauts.svelte';
+
+  import FeaturedAgencies from '../components/FeaturedAgencies.svelte';
+
+  import Launches from '../components/Launches.svelte';
+
+  import Footer from '../components/Footer.svelte';
+
+  const querySpaceStation = gql`
     {
       stations {
         name,
@@ -22,17 +30,94 @@
     }
   `;
 
-  const stationsRes = await request(fadayiyGraphqlApi, query)
+    const queryAstronauts = gql`
+    {
+      astronauts {
+        name,
+        agency {
+          name,
+          abbrev
+        },
+        nationality,
+        twitter,
+        instagram,
+        bio,
+        profile_image,
+        wiki,
+        first_flight,
+        last_flight,
+        status {
+          name
+        },
+        type {
+          name
+        },
+        profile_image_thumbnail
+      }
+    }
+  `;
+
+    const queryAgencies = gql`
+    {
+      agencies {
+        name,
+        abbrev,
+        image_url
+      }
+    }
+  `;
+
+    const queryLaunches = gql`
+    {
+      launches {
+        name,
+        slug,
+        status {
+          name,
+          abbrev
+        },
+        window_start,
+        window_end,
+        infoURLs,
+        vidURLs,
+        webcast_live,
+        image,
+        infographic
+      }
+    }
+  `;
+
+  const stationsRes = await request(fadayiyGraphqlApi, querySpaceStation)
+
+  const astronautsRes = await request(fadayiyGraphqlApi, queryAstronauts)
+
+  const agenciesRes = await request(fadayiyGraphqlApi, queryAgencies)
+
+  const launchesRes = await request(fadayiyGraphqlApi, queryLaunches)
 
   const { stations } = stationsRes
 
+  const { astronauts } = astronautsRes
+
+  const { agencies } = agenciesRes
+
+  const { launches } = launchesRes
+
   const featuredStations = stations.sort(() => .5 - Math.random()).slice(0,3)
+
+  const featuredAstronauts = astronauts.sort(() => .5 - Math.random()).slice(0,6)
+
+  const featuredAgencies = agencies.filter(function (agency) {
+    if (agency.image_url !=  null) return agency
+  }).sort(() => .5 - Math.random()).slice(0,6)
+  
+  const featuredLaunches = launches.slice(0,6)
 ---
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>Astro + TailwindCSS</title>
+    <title>Fadayiy</title>
     <link rel="stylesheet" type="text/css" href={Astro.resolve("../styles/global.css")}>
     <style>
       .space {
@@ -42,23 +127,36 @@
         background-position: center;
         background-size: cover;
         height: 100vh;
+        position: absolute;
       }
 
       .layerOne {
         background-image: url('/hero-bg.svg');
       }
 
+      .layerOne:before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        /* background: #e5e5e5; */
+        /* z-index: -1; */
+        background-image: url('/hero-bg.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+
       @keyframes float {
 	      0% {
-		      /* box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6); */
 		      transform: translatey(0px);
 	      }
 	      50% {
-		      /* box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2); */
 		      transform: translatey(-20px);
 	      }
 	      100% {
-		      /* box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6); */
 		      transform: translatey(0px);
 	      }
       }
@@ -72,25 +170,37 @@
     </style>
   </head>
 
-  <body class="overflow-x-hidden">
-    <div class="container">
+  <body class="flex flex-col min-h-screen justify-between overflow-x-hidden">
+    <Navbar />
+    <main class="container mx-auto px-4 max-w-7xl">
 
-      <Navbar />
 
-      <div class="hero min-h-screen bg-base-200 space layerOne">
+      <section class="hero min-h-screen bg-base-200 z-10 layerOne">
         <div class="flex-col hero-content lg:flex-row-reverse gap-40">
-        <!-- <img src="https://picsum.photos/id/1005/600/600" class="max-w-sm rounded-lg shadow-2xl"> -->
           <img src="/gray-planet.png" class="max-w-sm rounded-lg animateo">
           <div>
-            <h1 class="mb-5 text-5xl font-bold" style="color: #3c415e;">Spacey</h1> 
+            <h1 class="mb-5 text-5xl font-bold" style="color: #3c415e;">Fadayiy</h1> 
             <p class="mb-5" style="color: #3a415d;">The platform for the space nerds. Learn anything about space!</p> 
-            <button class="font-bold py-2 px-4 rounded-full" style="background-color: #3c415e; color: #ffffff">Get Started</button>
+            <button class="font-bold py-2 px-4 rounded-full flex space-x-3" style="background-color: #3c415e; color: #ffffff">
+              Scroll and Explore!
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17l-4 4m0 0l-4-4m4 4V3" />
+              </svg>
+            </button>
           </div>
         </div>
-      </div>
+      </section>
 
-    </div>
+      <FeaturedStations stations={featuredStations}/>
 
-    <FeaturedStations stations={featuredStations}/>
+      <FeaturedAstronauts astronauts={featuredAstronauts}/>
+
+      <FeaturedAgencies agencies={featuredAgencies}/>
+
+      <Launches launches={featuredLaunches}/>
+    </main>
+
+    <Footer />
+
   </body>
 </html>

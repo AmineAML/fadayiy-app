@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<header class="navbar mb-2 text-neutral-content rounded-box fixed w-full bg-transparent" style="color: #3a415d;">
+<header class="navbar mb-2 text-neutral-content rounded-box fixed w-full bg-transparent z-10" style="color: #3a415d;">
   <!-- <div
     class="navbar mb-2 text-neutral-content rounded-box fixed w-full bg-transparent"
     style="color: #3a415d;"
@@ -16,7 +16,7 @@
         <a class="btn btn-ghost btn-sm rounded-btn" href="/"> Stations </a>
         <a class="btn btn-ghost btn-sm rounded-btn" href="/"> Astronauts </a>
         <a class="btn btn-ghost btn-sm rounded-btn" href="/"> Agencies </a>
-        <a class="btn btn-ghost btn-sm rounded-btn" href="/"> Launches </a>
+        <a class="btn btn-ghost btn-sm rounded-btn" href="/"> Upcoming launches </a>
         <a class="btn btn-ghost btn-sm rounded-btn" href="/"> photos </a>
       </div>
     </div>
