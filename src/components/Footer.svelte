@@ -9,6 +9,8 @@
       <br />We provide ease of access to space data.
     </p>
     <small class="flex flex-wrap md:w-1/3">We claim NO ownership of the data presented on Fadayiy aside from the platform's code and design. That said, all data's ownership belongs to their respective owners and is being used under fair use terms for educational purposes.</small>
+    <br />
+    <p>Get in touch at: <a href="mailto:mail@amiproj.dev" class="link">mail@amiproj.dev</a></p>
   </div>
   <div>
     <span class="footer-title">Data</span>

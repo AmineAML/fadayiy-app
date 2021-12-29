@@ -153,11 +153,11 @@
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p> -->
           <div class="flex justify-start space-x-2">
-            <!-- {#if launch.webcast_live} -->
+            {#if launch.webcast_live}
                 <a href={launch.vidURLs} class="text-gray-500 hover:text-gray-600 m-auto border-2 rounded-lg border-gray-500 p-3">Watch live</a>
-            <!-- {:else} -->
-                <!-- <p class="text-gray-500 hover:text-gray-600 m-auto">Not broadcasted</p> -->
-            <!-- {/if} -->
+            {:else}
+                <p class="text-gray-500 hover:text-gray-600 m-auto">Not broadcasted</p>
+            {/if}
           </div>
         </div>
       </div>

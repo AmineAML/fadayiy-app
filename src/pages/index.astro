@@ -15,6 +15,10 @@
 
   import Footer from '../components/Footer.svelte';
 
+  import AstronomyPic from '../components/AstronomyPic.svelte';
+
+  import EarthPic from '../components/EarthPic.svelte';
+
   const querySpaceStation = gql`
     {
       stations {
@@ -87,6 +91,27 @@
     }
   `;
 
+  const queryAstronomyPic = gql`
+  {
+    astronomyPictureOfTheDay {
+      explanation,
+      hdurl,
+      media_type,
+      title,
+      copyright
+    }
+  }
+  `;
+
+  const queryEarthPic = gql`
+  {
+    EarthPolychromaticImagingCamera {
+      caption
+      url
+    }
+  }
+  `;
+
   const stationsRes = await request(fadayiyGraphqlApi, querySpaceStation)
 
   const astronautsRes = await request(fadayiyGraphqlApi, queryAstronauts)
@@ -95,6 +120,10 @@
 
   const launchesRes = await request(fadayiyGraphqlApi, queryLaunches)
 
+  const astronomyPicRes = await request(fadayiyGraphqlApi, queryAstronomyPic)
+
+  const earthPicRes = await request(fadayiyGraphqlApi, queryEarthPic)
+
   const { stations } = stationsRes
 
   const { astronauts } = astronautsRes
@@ -102,6 +131,10 @@
   const { agencies } = agenciesRes
 
   const { launches } = launchesRes
+
+  const { astronomyPictureOfTheDay } = astronomyPicRes
+
+  const { EarthPolychromaticImagingCamera } = earthPicRes
 
   const featuredStations = stations.sort(() => .5 - Math.random()).slice(0,3)
 
@@ -198,6 +231,10 @@
       <FeaturedAgencies agencies={featuredAgencies}/>
 
       <Launches launches={featuredLaunches}/>
+
+      <AstronomyPic pic={astronomyPictureOfTheDay}/>
+
+      <EarthPic pic={EarthPolychromaticImagingCamera}/>
     </main>
 
     <Footer />

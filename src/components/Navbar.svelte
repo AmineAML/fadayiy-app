@@ -7,9 +7,9 @@
     style="color: #3a415d;"
   > -->
     <div class="flex-1 px-2 mx-2">
-      <span class="text-lg font-bold">
+      <a href="/" class="text-lg font-bold">
         <img src="/logo.svg" alt="" class="flex w-20 h-20" />
-      </span>
+      </a>
     </div>
     <div class="flex-none hidden px-2 mx-2 lg:flex">
       <div class="flex items-stretch">
