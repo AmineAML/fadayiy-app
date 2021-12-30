@@ -1,0 +1,118 @@
+---
+    import { request, gql } from "graphql-request";
+
+    import { fadayiyGraphqlApi } from '../../lib/variables.js';
+
+    import Navbar from '../../components/Navbar.svelte';
+
+    import Footer from '../../components/Footer.svelte';
+
+    import Astronaut from '../../components/Astronaut.svelte';
+
+    const { slug } = Astro.request.params
+
+    const params = slug.split('_')
+
+    const id = params[params.length - 1]
+
+    const queryAstronaut = gql`
+    {
+      astronaut(id: ${id}) {
+        name,
+        agency {
+          name,
+          id
+        },
+        nationality,
+        twitter,
+        instagram,
+        bio,
+        profile_image,
+        wiki,
+        first_flight,
+        last_flight,
+        date_of_birth,
+        date_of_death
+        status {
+          name
+        },
+        type {
+          name
+        }
+      }
+    }
+  `;
+
+  const astronautRes = await request(fadayiyGraphqlApi, queryAstronaut)
+
+  const { astronaut } = astronautRes
+
+    export async function getStaticPaths({ rss }) {
+    const queryAstronauts = gql`
+    {
+      astronauts {
+        name,
+        agency {
+          name,
+          abbrev,
+          id
+        },
+        nationality,
+        twitter,
+        instagram,
+        bio,
+        profile_image,
+        wiki,
+        first_flight,
+        last_flight,
+        date_of_birth,
+        date_of_death
+        status {
+          name
+        },
+        type {
+          name
+        },
+        id
+      }
+    }
+  `;
+
+  const astronautsRes = await request(fadayiyGraphqlApi, queryAstronauts)
+
+  const { astronauts } = astronautsRes
+
+        return astronauts.map(astronaut => {
+            return {
+                params: {
+                    slug: `${astronaut.name.replace(new RegExp(' ', 'g'), '_').replace(new RegExp("'", 'g'), '').toLowerCase()}_${astronaut.agency != null ? astronaut.agency.abbrev.toLowerCase() : 'unavailable'}_${astronaut.nationality.toLowerCase()}_${astronaut.id}`
+                }
+            }
+        })
+    }
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{astronaut.name} | Astronaut | Fadayiy</title>
+    <link rel="stylesheet" type="text/css" href={Astro.resolve("../../styles/global.css")}>
+    <style>
+
+      body {
+        background-image: radial-gradient(circle, #e0e4eb, #e2e5eb, #e5e6eb, #e6e7ea, #e8e8ea);
+      }
+    </style>
+  </head>
+
+  <body class="flex flex-col min-h-screen justify-between overflow-x-hidden">
+    <Navbar />
+    <main class="container mx-auto px-4 max-w-7xl">
+        <Astronaut astronaut={astronaut}/>
+    </main>
+
+    <Footer />
+
+  </body>
+</html>
