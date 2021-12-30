@@ -1,95 +1,106 @@
 <script>
   export let launches;
 
-//   launches.forEach((element) => {
-//     element.ree = {
-//       seconds: "",
-//     };
+  async function checkImage(url) {
+    const res = await fetch(url, {
+      mode: "no-cors",
+    });
 
-//     let endDate = new Date(element.window_start).getTime();
+    const buff = await res.blob();
 
-//     setInterval(() => {
-//       let now = new Date().getTime();
+    return buff.type.startsWith("image/");
+  }
 
-//       let remainingTime = endDate - now;
+  //   launches.forEach((element) => {
+  //     element.ree = {
+  //       seconds: "",
+  //     };
 
-//       const second = 1000;
+  //     let endDate = new Date(element.window_start).getTime();
 
-//       const minute = second * 60;
+  //     setInterval(() => {
+  //       let now = new Date().getTime();
 
-//       const hour = minute * 60;
+  //       let remainingTime = endDate - now;
 
-//       const day = hour * 24;
+  //       const second = 1000;
 
-//       daysLeft = Math.trunc(remainingTime / day);
+  //       const minute = second * 60;
 
-//       hoursLeft = Math.trunc((remainingTime % day) / hour);
+  //       const hour = minute * 60;
 
-//       minutesLeft = Math.trunc((remainingTime % hour) / minute);
+  //       const day = hour * 24;
 
-//       secondsLeft = Math.trunc((remainingTime % minute) / second);
+  //       daysLeft = Math.trunc(remainingTime / day);
 
-//       element.ree.seconds = secondsLeft
+  //       hoursLeft = Math.trunc((remainingTime % day) / hour);
 
-//       console.log(secondsLeft)
+  //       minutesLeft = Math.trunc((remainingTime % hour) / minute);
 
-//       console.log(element.ree)
+  //       secondsLeft = Math.trunc((remainingTime % minute) / second);
 
-//     //   element.launchCounter = {
-//     //     seconds: "",
-//     //   };
+  //       element.ree.seconds = secondsLeft
 
-//     //   element.launchCounter.seconds = secondsLeft;
+  //       console.log(secondsLeft)
 
-//       if (remainingTime <= 0) {
-//         //   document.write("Time Up!");
-//       }
-//     }, 1000);
-//   });
+  //       console.log(element.ree)
 
-//   launches.forEach((element) => {
-//     element.countDownToLaunch = () => {
-//       let endDate = new Date(element.window_start).getTime();
+  //     //   element.launchCounter = {
+  //     //     seconds: "",
+  //     //   };
 
-//       setInterval(() => {
-//         let now = new Date().getTime();
+  //     //   element.launchCounter.seconds = secondsLeft;
 
-//         let remainingTime = endDate - now;
+  //       if (remainingTime <= 0) {
+  //         //   document.write("Time Up!");
+  //       }
+  //     }, 1000);
+  //   });
 
-//         const second = 1000;
+  //   launches.forEach((element) => {
+  //     element.countDownToLaunch = () => {
+  //       let endDate = new Date(element.window_start).getTime();
 
-//         const minute = second * 60;
+  //       setInterval(() => {
+  //         let now = new Date().getTime();
 
-//         const hour = minute * 60;
+  //         let remainingTime = endDate - now;
 
-//         const day = hour * 24;
+  //         const second = 1000;
 
-//         daysLeft = Math.trunc(remainingTime / day);
+  //         const minute = second * 60;
 
-//         hoursLeft = Math.trunc((remainingTime % day) / hour);
+  //         const hour = minute * 60;
 
-//         minutesLeft = Math.trunc((remainingTime % hour) / minute);
+  //         const day = hour * 24;
 
-//         secondsLeft = Math.trunc((remainingTime % minute) / second);
+  //         daysLeft = Math.trunc(remainingTime / day);
 
-//         element.launchCounter = {
-//           seconds: "",
-//         };
+  //         hoursLeft = Math.trunc((remainingTime % day) / hour);
 
-//         element.launchCounter.seconds = secondsLeft;
+  //         minutesLeft = Math.trunc((remainingTime % hour) / minute);
 
-//         if (remainingTime <= 0) {
-//           //   document.write("Time Up!");
-//         }
-//       }, 1000);
-//     };
-//   });
+  //         secondsLeft = Math.trunc((remainingTime % minute) / second);
+
+  //         element.launchCounter = {
+  //           seconds: "",
+  //         };
+
+  //         element.launchCounter.seconds = secondsLeft;
+
+  //         if (remainingTime <= 0) {
+  //           //   document.write("Time Up!");
+  //         }
+  //       }, 1000);
+  //     };
+  //   });
 </script>
 
 <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
   <div class="text-center pb-12">
     <h2
       class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900"
+      id="upcoming-launches"
     >
       Upcoming launches
     </h2>
@@ -100,12 +111,15 @@
       <div
         class="w-full bg-white rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row"
       >
-        <div class="w-full md:w-2/5 h-80">
+        <div class="w-full md:w-2/5 h-80 relative">
           <img
             class="object-center object-cover w-full h-full"
-            src={launch.image}
-            alt={launches.name + "'s thumbnail"}
+            src={launch.image ? launch.image : "default-launch-thumbnail.jpg"}
+            alt={launch.name + "'s thumbnail"}
           />
+          {#if !launch.image}
+            <p class="text-sm text-gray-300 absolute bottom-2">Default image</p>
+          {/if}
         </div>
         <div class="w-full md:w-3/5 text-left p-6 md:p-4 space-y-2">
           <p class="text-xl text-gray-700 font-bold">{launch.name}</p>
@@ -141,9 +155,9 @@
               class="flex flex-col p-2 bg-neutral rounded-box text-neutral-content"
             >
               <span class="font-mono text-base countdown"> -->
-                <!-- <span style="--value: 60;" /> -->
-                <!-- {launch.ree ? launch.ree.seconds : ""} -->
-              <!-- </span>
+          <!-- <span style="--value: 60;" /> -->
+          <!-- {launch.ree ? launch.ree.seconds : ""} -->
+          <!-- </span>
               {launch.ree ? launch.ree.seconds : ""}
               sec
             </div>
@@ -154,9 +168,15 @@
           </p> -->
           <div class="flex justify-start space-x-2">
             {#if launch.webcast_live}
-                <a href={launch.vidURLs} class="text-gray-500 hover:text-gray-600 m-auto border-2 rounded-lg border-gray-500 p-3">Watch live</a>
+              <a
+                href={launch.vidURLs}
+                class="text-gray-500 hover:text-gray-600 m-auto border-2 rounded-lg border-gray-500 p-3"
+                >Watch live</a
+              >
             {:else}
-                <p class="text-gray-500 hover:text-gray-600 m-auto">Not broadcasted</p>
+              <p class="text-gray-500 hover:text-gray-600 m-auto">
+                Not broadcasted
+              </p>
             {/if}
           </div>
         </div>

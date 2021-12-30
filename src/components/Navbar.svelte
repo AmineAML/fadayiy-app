@@ -13,11 +13,11 @@
     </div>
     <div class="flex-none hidden px-2 mx-2 lg:flex">
       <div class="flex items-stretch">
-        <a class="btn btn-ghost btn-sm rounded-btn" href="/"> Stations </a>
-        <a class="btn btn-ghost btn-sm rounded-btn" href="/"> Astronauts </a>
-        <a class="btn btn-ghost btn-sm rounded-btn" href="/"> Agencies </a>
-        <a class="btn btn-ghost btn-sm rounded-btn" href="/"> Upcoming launches </a>
-        <a class="btn btn-ghost btn-sm rounded-btn" href="/"> photos </a>
+        <a class="btn btn-ghost btn-sm rounded-btn" href="/stations"> Stations </a>
+        <a class="btn btn-ghost btn-sm rounded-btn" href="/astronauts"> Astronauts </a>
+        <a class="btn btn-ghost btn-sm rounded-btn" href="/agencies"> Agencies </a>
+        <a class="btn btn-ghost btn-sm rounded-btn" href="/#upcoming-launches"> Upcoming launches </a>
+        <a class="btn btn-ghost btn-sm rounded-btn" href="/#astronomy-picture"> photos </a>
       </div>
     </div>
   <!-- </div> -->

@@ -1,13 +1,13 @@
 ---
-    import Navbar from '../components/Navbar.svelte';
+    import Navbar from '../../components/Navbar.svelte';
 
-    import Footer from '../components/Footer.svelte';
+    import Footer from '../../components/Footer.svelte';
 
     import { request, gql } from "graphql-request";
 
-    import { fadayiyGraphqlApi } from '../lib/variables.js';
+    import { fadayiyGraphqlApi } from '../../lib/variables.js';
 
-    import Astronauts from '../components/Astronauts.svelte';
+    import Astronauts from '../../components/Astronauts.svelte';
 
     const queryAstronauts = gql`
     {
@@ -31,7 +31,8 @@
         type {
           name
         },
-        profile_image_thumbnail
+        profile_image_thumbnail,
+        id
       }
     }
   `;
@@ -44,8 +45,8 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>Fadayiy | Astronauts</title>
-    <link rel="stylesheet" type="text/css" href={Astro.resolve("../styles/global.css")}>
+    <title>Astronauts | Fadayiy</title>
+    <link rel="stylesheet" type="text/css" href={Astro.resolve("../../styles/global.css")}>
     <style>
 
       body {

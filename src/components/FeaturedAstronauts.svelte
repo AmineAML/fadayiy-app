@@ -29,7 +29,7 @@
           <p class="text-base text-gray-400 font-normal mb-6">
             {astronaut.agency != null ? astronaut.agency.abbrev : "Unavailable"}
           </p>
-          <a href="/" class="btn btn-outline" style="color: #3c415e;"
+          <a href="/astronauts/{astronaut.name.replace(new RegExp(' ', 'g'), '_').replace(new RegExp("'", 'g'), '').toLowerCase()}_{astronaut.agency != null ? astronaut.agency.abbrev.toLowerCase() : 'unavailable'}_{astronaut.nationality.toLowerCase()}_{astronaut.id}" class="btn btn-outline" style="color: #3c415e;"
             >Read bio</a
           >
         </div>
@@ -39,6 +39,6 @@
   <a
     class="btn btn-wide btn-lg bg-transparent mx-auto hover:bg-gray-400"
     style="color: #3c415e;"
-    href="/">Show more</a
+    href="/astronauts">Show more</a
   >
 </section>

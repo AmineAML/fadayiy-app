@@ -6,6 +6,7 @@
   <div class="text-center pb-12">
     <h2
       class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900"
+      id="astronomy-picture"
     >
       Astronomy picture
     </h2>
@@ -26,11 +27,13 @@
           {pic.title}
         </h2>
         <p class="text-sm text-gray-700 px-2 mr-1">{pic.explanation}</p>
-        <div class="flex items-center justify-between mt-2 mx-6">
-          <p href="#" class="text-blue-500 text-xs -ml-3 ">
-            {pic.copyright || ""}
-          </p>
-        </div>
+        {#if pic.copyright}
+          <div class="flex items-center justify-between mt-2 mx-6">
+            <p href="#" class="text-blue-500 text-xs -ml-3 ">
+              &copy; {pic.copyright}
+            </p>
+          </div>
+        {/if}
       </div>
     </div>
   </div>

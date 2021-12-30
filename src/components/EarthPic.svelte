@@ -19,12 +19,10 @@
             class="max-w-full max-h-screen rounded-lg rounded-b-none mx-auto"
           />
       </div>
-      <div class="px-4 py-2 mt-2 flex">
-        <div class="flex items-center mt-2 mx-6">
+      <div class="px-4 py-2 mt-2 text-center">
           <p class="text-blue-500 text-xs">
             {pic.caption}
           </p>
-        </div>
       </div>
     </div>
   </div>

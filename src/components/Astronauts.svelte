@@ -36,9 +36,9 @@
     <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
             <div>
-                <h2 class="text-2xl font-semibold leading-tight" style="color: #3c415e;">Astronauts</h2>
+                <h2 class="text-2xl font-semibold leading-tight text-center" style="color: #3c415e;">Astronauts</h2>
             </div>
-            <div class="my-2 flex sm:flex-row flex-col">
+            <!-- <div class="my-2 flex sm:flex-row flex-col">
                 <div class="flex flex-row mb-1 sm:mb-0">
                     <div class="relative">
                         <select
@@ -66,7 +66,7 @@
                     <input placeholder="Search"
                         class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                 </div>
-            </div>
+            </div> -->
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                     <table class="min-w-full leading-normal">
@@ -117,17 +117,17 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
                                         <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <a href="/astronauts/{astronaut.name.replace(new RegExp(' ', 'g'), '_').toLowerCase()}_{astronaut.agency != null ? astronaut.agency.abbrev.toLowerCase() : 'unavailable'}_{astronaut.nationality.toLowerCase()}" class="relative">Read bio</a>
+                                            class="absolute inset-0 bg-blue-200 opacity-50 rounded-full"></span>
+                                        <a href="/astronauts/{astronaut.name.replace(new RegExp(' ', 'g'), '_').replace(new RegExp("'", 'g'), '').toLowerCase()}_{astronaut.agency != null ? astronaut.agency.abbrev.toLowerCase() : 'unavailable'}_{astronaut.nationality.toLowerCase()}_{astronaut.id}" class="relative">Read bio</a>
                                     </span>
                                 </td>
                             </tr>
                             {/each}
                         </tbody>
                     </table>
-                    <div
+                    <!-- <div
                         class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                         <span class="text-xs xs:text-sm text-gray-900">
                             Showing {page} of {totalPages} pages from {astronauts.length} astronauts
@@ -142,7 +142,7 @@
                                 Next
                             </button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
