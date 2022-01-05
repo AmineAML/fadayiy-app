@@ -1,0 +1,55 @@
+---
+    import Navbar from '../../components/Navbar.svelte';
+
+    import Footer from '../../components/Footer.svelte';
+
+    import { request, gql } from "graphql-request";
+
+    import { fadayiyGraphqlApi } from '../../lib/variables.js';
+
+    import SpaceStations from '../../components/SpaceStations.svelte';
+
+    const querySpaceStations = gql`
+    {
+      stations {
+        name,
+        status {
+          name
+        },
+        type {
+          name
+        },
+        image_url,
+        id
+      }
+    }
+  `;
+
+  const spaceStationsRes = await request(fadayiyGraphqlApi, querySpaceStations)
+
+  const { stations } = spaceStationsRes
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>Space Stations | Fadayiy</title>
+    <link rel="stylesheet" type="text/css" href={Astro.resolve("../../styles/global.css")}>
+    <style>
+
+      body {
+        background-image: radial-gradient(circle, #e0e4eb, #e2e5eb, #e5e6eb, #e6e7ea, #e8e8ea);
+      }
+    </style>
+  </head>
+
+  <body class="flex flex-col min-h-screen justify-between overflow-x-hidden">
+    <Navbar />
+    <main class="container mx-auto px-4 max-w-7xl">
+        <SpaceStations spaceStations={stations}/>
+    </main>
+
+    <Footer />
+
+  </body>
+</html>

@@ -19,7 +19,7 @@
         </p>
         <a
           class="border-2 px-6 py-4 rounded-md border-indigo-600 text-slate-100 hover:bg-indigo-600 hover:text-indigo-100 transition duration-75"
-          href={astronaut.wiki}>Learn more</a
+          href={astronaut.wiki} target="_blank">Learn more</a
         >
       </div>
     </div>

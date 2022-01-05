@@ -1,19 +1,19 @@
 <script>
-  export let stations;
+  export let spaceStations;
 </script>
 
 <section
-  class="min-h-screen flex flex-col mx-auto w-full space-y-16 h-full my-5"
+class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12 flex flex-col space-y-16 my-5"
 >
   <div class="text-center pb-12">
     <h2
       class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading" style="color: #3c415e;"
     >
-    Featured space stations
+    Space Stations
     </h2>
   </div>
 
-  {#each stations as station}
+  {#each spaceStations as station}
     <div class="flex justify-between flex-col md:flex-row space-y-3">
       <figure class="flex md:w-2/5 w-full">
         <img
@@ -32,9 +32,4 @@
       </div>
     </div>
   {/each}
-
-  <a
-    class="btn btn-wide btn-lg bg-transparent mx-auto hover:bg-gray-400"
-    style="color: #3c415e;" href="/spacestations">Show more</a
-  >
 </section>

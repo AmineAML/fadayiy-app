@@ -119,10 +119,7 @@
             {agency.name + " (" + agency.abbrev + ")"}
           </p>
           <a
-            href="/agencies/{agency.name.replace(
-              new RegExp(' ', 'g'),
-              '_'
-            )}_{agency.id}"
+            href="/agencies/{agency.abbrev.toLowerCase()}_{agency.id}"
             class="btn btn-outline font-normal text-base text-white"
             >Learn more</a
           >

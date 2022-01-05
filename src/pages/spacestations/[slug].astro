@@ -7,7 +7,7 @@
 
     import Footer from '../../components/Footer.svelte';
 
-    import Agency from '../../components/Agency.svelte';
+    import SpaceStation from '../../components/SpaceStation.svelte';
 
     const { slug } = Astro.request.params
 
@@ -15,49 +15,67 @@
 
     const id = params[params.length - 1]
 
-    const queryAgency = gql`
+    const querySpaceStation = gql`
     {
-      agency(id: ${id}) {
+      station(id: ${id}) {
         name,
-        abbrev,
+        status {
+          name
+        },
+        type {
+          name
+        },
         image_url,
-        logo_url,
-        id,
-        info_url,
-        wiki_url,
-        description
+        description,
+        founded,
+        deorbited,
+        orbit,
+        owners {
+          name,
+          abbrev
+        },
+        id
       }
     }
   `;
 
-  const agencyRes = await request(fadayiyGraphqlApi, queryAgency)
+  const spaceStationsRes = await request(fadayiyGraphqlApi, querySpaceStation)
 
-  const { agency } = agencyRes
+  const { station } = spaceStationsRes
 
   export async function getStaticPaths({ }) {
-    const queryAgencies = gql`
+    const querySpaceStations = gql`
     {
-      agencies {
+      stations {
         name,
-        abbrev,
+        status {
+          name
+        },
+        type {
+          name
+        },
         image_url,
-        logo_url,
-        id,
-        info_url,
-        wiki_url,
-        description
+        description,
+        founded,
+        deorbited,
+        orbit,
+        owners {
+          name,
+          abbrev
+        },
+        id
       }
     }
     `;
 
-    const agenciesRes = await request(fadayiyGraphqlApi, queryAgencies)
+    const spaceStationsRes = await request(fadayiyGraphqlApi, querySpaceStations)
 
-    const { agencies } = agenciesRes
+    const { stations } = spaceStationsRes
 
-        return agencies.map(agency => {
+        return stations.map(station => {
             return {
                 params: {
-                    slug: `${agency.abbrev.toLowerCase()}_${agency.id}`
+                    slug: `${station.name.replace(new RegExp(' ', 'g'), '_').toLowerCase()}_${station.id}`
                 }
             }
         })
@@ -68,7 +86,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>{agency.name} | Agency | Fadayiy</title>
+    <title>{station.name} | Space Station | Fadayiy</title>
     <link rel="stylesheet" type="text/css" href={Astro.resolve("../../styles/global.css")}>
     <style>
 
@@ -81,7 +99,7 @@
   <body class="flex flex-col min-h-screen justify-between overflow-x-hidden">
     <Navbar />
     <main class="container mx-auto px-4 max-w-7xl">
-        <Agency agency={agency}/>
+        <SpaceStation spaceStation={station}/>
     </main>
 
     <Footer />
