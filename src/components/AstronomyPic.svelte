@@ -29,7 +29,7 @@
         <p class="text-sm text-gray-700 px-2 mr-1">{pic.explanation}</p>
         {#if pic.copyright}
           <div class="flex items-center justify-between mt-2 mx-6">
-            <p href="#" class="text-blue-500 text-xs -ml-3 ">
+            <p class="text-blue-500 text-xs -ml-3 ">
               &copy; {pic.copyright}
             </p>
           </div>
