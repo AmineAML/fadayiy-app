@@ -1,0 +1,46 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:   
+        
+  build:
+  
+    runs-on: [ self-hosted ]
+    
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Create env file
+      run: |
+        cd bot
+        touch .env
+        echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
+        echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+        echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+        echo POSTGRES_HOST_PORT=${{ secrets.POSTGRES_HOST_PORT }} >> .env
+        echo NODE_ENV=${{ secrets.NODE_ENV }} >> .env
+        echo LAUNCH_LIBRARY_V2_API_PROD=${{ secrets.LAUNCH_LIBRARY_V2_API_PROD }} >> .env
+        echo NASA_DEVELOPER_KEY=${{ secrets.NASA_DEVELOPER_KEY }} >> .env
+        echo NASA_APOD=${{ secrets.NASA_APOD }} >> .env
+        echo NASA_EPIC=${{ secrets.NASA_EPIC }} >> .env
+        echo BING_IMAGE_SEARCH_API_URL=${{ secrets.BING_IMAGE_SEARCH_API_URL }} >> .env
+        echo BING_IMAGE_SEARCH_API_KEY=${{ secrets.BING_IMAGE_SEARCH_API_KEY }} >> .env
+        echo PROD_PORT=${{ secrets.PROD_PORT }} >> .env
+        cat .env
+    - run: docker-compose up -d --force-recreate --build && docker system prune -a -f && docker volume prune -f
