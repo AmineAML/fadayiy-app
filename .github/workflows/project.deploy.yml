@@ -42,4 +42,4 @@ jobs:
         echo BING_IMAGE_SEARCH_API_KEY=${{ secrets.BING_IMAGE_SEARCH_API_KEY }} >> .env
         echo PROD_PORT=${{ secrets.PROD_PORT }} >> .env
         cat .env
-    - run: docker-compose up -d --force-recreate --build && docker system prune -a -f && docker volume prune -f
+    - run: npm run docker:prod:up && docker system prune -a -f && docker volume prune -f
