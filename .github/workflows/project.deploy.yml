@@ -28,7 +28,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Create env file
       run: |
-        cd bot
         touch .env
         echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
         echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
