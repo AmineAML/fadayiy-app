@@ -2,9 +2,7 @@
   export let stations;
 </script>
 
-<section
-  class="min-h-screen flex flex-col mx-auto w-full space-y-16 h-full my-5"
->
+<section class="min-h-screen flex flex-col mx-auto w-full space-y-16 h-full my-5 pt-20"  id="featuredStations">
   <div class="text-center pb-12">
     <h2
       class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading" style="color: #3c415e;"

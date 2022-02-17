@@ -7,7 +7,7 @@
 
     import { fadayiyGraphqlApi } from '../../lib/variables.js';
 
-    import Astronauts from '../../components/Astronauts.svelte';
+    import Astronauts from '/src/components/Astronauts.svelte';
 
     const queryAstronauts = gql`
     {
@@ -58,8 +58,8 @@
   <body class="flex flex-col min-h-screen justify-between overflow-x-hidden">
     <Navbar />
     <main class="container mx-auto px-4 max-w-7xl">
-        <!-- <Astronauts client:load astronauts={astronauts} /> -->
-        <Astronauts astronauts={astronauts} />
+        <Astronauts client:load astronauts={astronauts} />
+        <!-- <Astronauts astronauts={astronauts} /> -->
     </main>
 
     <Footer />

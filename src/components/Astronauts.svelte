@@ -5,11 +5,15 @@
 
     let page = 1
 
-    let totalPages = (astronauts.length / resultsByPage).toFixed()
+    let totalPages = Math.ceil(astronauts.length / resultsByPage)
 
-    // let astros = astronauts.slice((page - 1) * resultsByPage, page * resultsByPage)
+    let astros = astronauts.slice((page - 1) * resultsByPage, page * resultsByPage)
 
-    let astros = astronauts
+    // let astros = astronauts
+
+    let searchValue = "";
+
+    let astronautsCount = astronauts.length
 
     function showNext(pg) {
         astros = astronauts.slice((pg - 1) * resultsByPage, pg * resultsByPage)
@@ -24,11 +28,31 @@
     }
 
     function resultsByPageChanged() {
-        totalPages = astros.length / resultsByPage
+        // totalPages = astros.length / resultsByPage
 
-        page = 1
+        totalPages = Math.ceil(astronauts.length / resultsByPage)
+
+        // page = 1
 
         astros = astronauts.slice((page - 1) * resultsByPage, page * resultsByPage)
+    }
+
+    function filterAstronauts() {
+        if (searchValue == '') {
+            totalPages = Math.ceil(astros.length / resultsByPage)
+
+            astros = astronauts.slice((page - 1) * resultsByPage, page * resultsByPage)
+
+            totalPages = Math.ceil(astronauts.length / resultsByPage)
+
+            astronautsCount = astronauts.length
+        } else {
+            astros = astronauts.filter(astro => (new RegExp(searchValue.toLowerCase())).test(astro.name.toLowerCase()))
+
+            totalPages = 1
+
+            astronautsCount = astros.length
+        }
     }
 </script>
 
@@ -38,14 +62,14 @@
             <div>
                 <h2 class="text-2xl font-semibold leading-tight text-center" style="color: #3c415e;">Astronauts</h2>
             </div>
-            <!-- <div class="my-2 flex sm:flex-row flex-col">
+            <div class="my-2 flex sm:flex-row flex-col">
                 <div class="flex flex-row mb-1 sm:mb-0">
                     <div class="relative">
                         <select
                             class="appearance-none h-full rounded-l border block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" bind:value={resultsByPage} on:change="{resultsByPageChanged}">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>20</option>
+                            <option selected value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
                         </select>
                         <div
                             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -63,10 +87,10 @@
                             </path>
                         </svg>
                     </span>
-                    <input placeholder="Search"
+                    <input placeholder="Search" bind:value={searchValue} on:keyup="{filterAstronauts}"
                         class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                 </div>
-            </div> -->
+            </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                     <table class="min-w-full leading-normal">
@@ -127,10 +151,10 @@
                             {/each}
                         </tbody>
                     </table>
-                    <!-- <div
+                    <div
                         class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                         <span class="text-xs xs:text-sm text-gray-900">
-                            Showing {page} of {totalPages} pages from {astronauts.length} astronauts
+                            Showing {page} of {totalPages} pages from {astronautsCount} astronauts
                         </span>
                         <div class="inline-flex mt-2 xs:mt-0">
                             <button
@@ -142,7 +166,7 @@
                                 Next
                             </button>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
