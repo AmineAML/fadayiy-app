@@ -3,9 +3,9 @@
 </script>
 
 <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12 flex flex-col space-y-16 my-5">
-  <div class="text-center pb-12">
+  <div class="text-center">
     <h2
-      class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading" style="color: #3c415e;"
+      class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-white"
     >
       Featured astronauts
     </h2>
@@ -37,8 +37,7 @@
     {/each}
   </div>
   <a
-    class="btn btn-wide btn-lg bg-transparent mx-auto hover:bg-gray-400"
-    style="color: #3c415e;"
-    href="/astronauts">Show more</a
+    class="mx-auto rounded-full px-5 py-4 cursor-pointer text-white"
+    style="background-image: linear-gradient(to right, #ca3035, #cf3833, #d54030, #d9472d, #de4f2a);" href="/astronauts">Show more</a
   >
 </section>

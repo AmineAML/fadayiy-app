@@ -1,0 +1,39 @@
+---
+    import Footer from '../components/Footer.svelte';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>Page Not Found | Fadayiy</title>
+    <link rel="stylesheet" type="text/css" href={Astro.resolve("../../styles/global.css")}>
+    <link rel="stylesheet" type="text/css" href={Astro.resolve("../styles/global.css")}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Trispace&display=swap" rel="stylesheet">
+    <style>
+
+      body {
+        /* background-image: radial-gradient(circle, #e0e4eb, #e2e5eb, #e5e6eb, #e6e7ea, #e8e8ea); */
+        background-color: #020202;
+        font-family: 'Trispace', sans-serif;
+      }
+    </style>
+  </head>
+
+  <body class="flex flex-col h-screen justify-between overflow-x-hidden w-screen">
+        <div class="flex flex-col m-auto">
+            <img src="/logo.svg" alt="" class="flex w-1/4 mx-auto" />
+            <p class="mx-auto">404</p>
+            <p class="mx-auto">Page Not Found</p>
+            <div class="mx-auto">
+                <a class="font-bold py-2 px-4 rounded-full flex space-x-3" style="background-image: linear-gradient(to right, #ca3035, #cf3833, #d54030, #d9472d, #de4f2a); color: #ffffff; width: fit-content;" href="/">
+                    Back To Home Page
+                </a>
+            </div>
+        </div>
+
+        <Footer />
+  </body>
+</html>
