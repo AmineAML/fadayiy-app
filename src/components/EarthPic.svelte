@@ -2,15 +2,15 @@
   export let pic;
 </script>
 
-<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
-  <div class="text-center pb-12">
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12 space-y-16">
+  <div class="text-center">
     <h2
-      class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900"
+      class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-white"
     >
       Earth picture
     </h2>
   </div>
-  <div class="mx-auto px-4 py-8 w-full my-20">
+  <div class="mx-auto w-full">
     <div class="bg-black shadow-2xl rounded-lg mb-6 tracking-wide">
       <div class="md:flex-shrink-0 flex">
           <img

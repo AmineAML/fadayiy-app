@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<footer class="p-10 footer bg-base-200 text-base-content" style="color: #3c415e; background: transparent">
+<footer class="p-10 footer bg-base-200 text-base-content text-white" style="background: transparent">
   <div>
     <img src="/logo.svg" alt="" class="flex w-24 h-24" />
     <p>

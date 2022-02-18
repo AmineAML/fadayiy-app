@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<header class="navbar mb-2 text-neutral-content rounded-box fixed w-full bg-transparent z-10" style="color: #3a415d;">
+<header class="navbar mb-2 rounded-box fixed w-full bg-transparent z-10 text-white">
   <!-- <div
     class="navbar mb-2 text-neutral-content rounded-box fixed w-full bg-transparent"
     style="color: #3a415d;"

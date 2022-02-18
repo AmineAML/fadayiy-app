@@ -156,6 +156,9 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <title>Fadayiy</title>
     <link rel="stylesheet" type="text/css" href={Astro.resolve("../styles/global.css")}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Trispace&display=swap" rel="stylesheet">
     <!-- <script src="https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@1/tsparticles.preset.stars.min.js"></script> -->
     <style>
@@ -206,6 +209,7 @@
       body {
         /* background-image: radial-gradient(circle, #e0e4eb, #e2e5eb, #e5e6eb, #e6e7ea, #e8e8ea); */
         background-color: #020202;
+        font-family: 'Trispace', sans-serif;
       }
     </style>
   </head>
@@ -224,9 +228,9 @@
             Your browser does not support the video tag.
           </video>
           <div class="z-30 lg:absolute lg:left-2/3 lg:max-w-md">
-            <h1 class="mb-5 text-5xl font-bold" style="color: #3c415e;">Fadayiy</h1> 
-            <p class="mb-5" style="color: #3a415d;">The platform for the space nerds. Learn anything about space!</p> 
-            <a class="font-bold py-2 px-4 rounded-full flex space-x-3" style="background-color: #3c415e; color: #ffffff; width: fit-content;" href="#featuredStations">
+            <h1 class="mb-5 text-5xl font-bold text-white uppercase">Fadayiy</h1>
+            <p class="mb-5 text-white">The platform for the space nerds. Learn anything about space!</p>
+            <a class="font-bold py-2 px-4 rounded-full flex space-x-3" style="background-image: linear-gradient(to right, #ca3035, #cf3833, #d54030, #d9472d, #de4f2a); color: #ffffff; width: fit-content;" href="#featuredStations">
               Scroll and Explore!
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17l-4 4m0 0l-4-4m4 4V3" />

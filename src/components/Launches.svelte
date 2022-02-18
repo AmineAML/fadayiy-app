@@ -96,10 +96,10 @@
   //   });
 </script>
 
-<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
-  <div class="text-center pb-12">
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12 space-y-16">
+  <div class="text-center">
     <h2
-      class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-gray-900"
+      class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-white"
       id="upcoming-launches"
     >
       Upcoming launches
