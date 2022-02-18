@@ -56,11 +56,11 @@
     }
 </script>
 
-<section class="antialiased font-sans bg-gray-200 mt-20">
+<section class="antialiased font-sans bg-transparent mt-20">
     <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
             <div>
-                <h2 class="text-2xl font-semibold leading-tight text-center" style="color: #3c415e;">Astronauts</h2>
+                <h2 class="text-2xl font-semibold leading-tight text-center text-white">Astronauts</h2>
             </div>
             <div class="my-2 flex sm:flex-row flex-col">
                 <div class="flex flex-row mb-1 sm:mb-0">
@@ -97,19 +97,19 @@
                         <thead>
                             <tr>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 text-left text-xs font-semibold text-white uppercase tracking-wider" style="background-color: #1F2937; border-color: #1F2937;">
                                     Name
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                class="px-5 py-3 border-b-2 text-left text-xs font-semibold text-white uppercase tracking-wider" style="background-color: #1F2937; border-color: #1F2937;">
                                     Agency
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                class="px-5 py-3 border-b-2 text-left text-xs font-semibold text-white uppercase tracking-wider" style="background-color: #1F2937; border-color: #1F2937;">
                                     Nationality
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                class="px-5 py-3 border-b-2 text-left text-xs font-semibold text-white uppercase tracking-wider" style="background-color: #1F2937; border-color: #1F2937;">
                                     Action
                                 </th>
                             </tr>

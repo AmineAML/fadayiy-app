@@ -58,8 +58,7 @@
 >
   <div class="text-center pb-12">
     <h2
-      class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading"
-      style="color: #3c415e;"
+      class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-white"
     >
       Space agencies
       <br />

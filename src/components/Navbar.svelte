@@ -1,7 +1,10 @@
 <script>
+  let pixels;
 </script>
 
-<header class="navbar mb-2 rounded-box fixed w-full bg-transparent z-10 text-white">
+<svelte:window bind:scrollY={pixels} />
+
+<header class={pixels > 100 ? 'navbar mb-2 rounded-box fixed w-full z-10 text-white bg-black' : 'navbar mb-2 rounded-box fixed w-full bg-transparent z-10 text-white'}>
   <!-- <div
     class="navbar mb-2 text-neutral-content rounded-box fixed w-full bg-transparent"
     style="color: #3a415d;"

@@ -1,5 +1,5 @@
 ---
-  import Navbar from '../components/Navbar.svelte';
+  import Navbar from '/src/components/Navbar.svelte';
 
   import { request, gql } from "graphql-request";
 
@@ -11,15 +11,13 @@
 
   import FeaturedAgencies from '../components/FeaturedAgencies.svelte';
 
-  import Launches from '../components/Launches.svelte';
+  import Launches from '/src/components/Launches.svelte';
 
   import Footer from '../components/Footer.svelte';
 
   import AstronomyPic from '../components/AstronomyPic.svelte';
 
   import EarthPic from '../components/EarthPic.svelte';
-
-  import Hero from '../components/Hero.svelte';
 
   const querySpaceStation = gql`
     {
@@ -154,7 +152,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>Fadayiy</title>
+    <title>Home Page | Fadayiy</title>
     <link rel="stylesheet" type="text/css" href={Astro.resolve("../styles/global.css")}>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -211,11 +209,15 @@
         background-color: #020202;
         font-family: 'Trispace', sans-serif;
       }
+
+      html, body {
+        scroll-behavior: smooth;
+      }
     </style>
   </head>
 
   <body class="flex flex-col min-h-screen justify-between overflow-x-hidden">
-    <Navbar />
+    <Navbar client:load/>
     <main class="container mx-auto px-4 max-w-7xl">
 
       <!-- <Hero /> -->
@@ -230,7 +232,7 @@
           <div class="z-30 lg:absolute lg:left-2/3 lg:max-w-md">
             <h1 class="mb-5 text-5xl font-bold text-white uppercase">Fadayiy</h1>
             <p class="mb-5 text-white">The platform for the space nerds. Learn anything about space!</p>
-            <a class="font-bold py-2 px-4 rounded-full flex space-x-3" style="background-image: linear-gradient(to right, #ca3035, #cf3833, #d54030, #d9472d, #de4f2a); color: #ffffff; width: fit-content;" href="#featuredStations">
+            <a class="font-bold py-2 px-4 rounded-full flex space-x-3" style="background-image: linear-gradient(to right, #ca3035, #cf3833, #d54030, #d9472d, #de4f2a); color: #ffffff; width: fit-content;" href="#pic">
               Scroll and Explore!
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17l-4 4m0 0l-4-4m4 4V3" />
@@ -242,17 +244,17 @@
         </div>
       </section>
 
+      <AstronomyPic pic={astronomyPictureOfTheDay}/>
+
+      <EarthPic pic={EarthPolychromaticImagingCamera}/>
+      
+      <Launches launches={featuredLaunches} client:load/>
+
       <FeaturedStations stations={featuredStations}/>
 
       <FeaturedAstronauts astronauts={featuredAstronauts}/>
 
       <FeaturedAgencies agencies={featuredAgencies}/>
-
-      <Launches launches={featuredLaunches}/>
-
-      <AstronomyPic pic={astronomyPictureOfTheDay}/>
-
-      <EarthPic pic={EarthPolychromaticImagingCamera}/>
     </main>
 
     <Footer />

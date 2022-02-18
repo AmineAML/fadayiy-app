@@ -2,7 +2,7 @@
   export let pic;
 </script>
 
-<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12 space-y-16">
+<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12 space-y-16 pt-28" id="pic">
   <div class="text-center">
     <h2
       class="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-white"
