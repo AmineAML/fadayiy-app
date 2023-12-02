@@ -31,7 +31,7 @@
           <!-- <a href="/agencies/{agency.name.replace(new RegExp(' ', 'g'), '_')}_{agency.id}" class="btn btn-outline font-normal text-base text-white"
             >Learn more</a
           > -->
-          <a href="/agencies/{agency.abbrev.toLowerCase()}_{agency.id}" class="btn btn-outline font-normal text-base text-white"
+          <a href="/agencies/{agency.abbrev.toLowerCase()}" class="btn btn-outline font-normal text-base text-white"
             >Learn more</a
           >
         </div>
